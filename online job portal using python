@@ -1,0 +1,84 @@
+class User: 
+    def _ int_ (self, username, email, password): 
+        self. username  =  username 
+        self . email  =  email 
+        self . password =  password 
+ 
+class Job: 
+    def _ int(self, title, company, location, description): 
+        self . title = title 
+        self. company = company 
+        self. location = location 
+        self. description = description 
+ 
+class JobPortal: 
+    def _int_(self): 
+        self. users = [] 
+        self.jobs = [] 
+ 
+    def register_ user(self, username, email, password): 
+        new_ user = user(username, email, password) 
+        self. users. append(new _user) 
+        print("User registered successfully.") 
+ 
+    def add_ job(self, title, company, location, description): 
+        new_ job = Job(title, company, location, description) 
+        self. jobs. Append(new _job) 
+        print("Job added successfully.") 
+ 
+    def display_ jobs(self): 
+        for id , job in enumerate (self.jobs, start=1): 
+            print(f"{idx}. {job. title} at {job. company} in {job. location}") 
+            print(job. description) 
+            print() 
+ 
+ 
+                                                                                        
+    def search_ jobs(self, keyword): 
+        filtered_ jobs = [job for job in self.jobs if keyword. lower() in job .title. lower() or keyword. 
+lower() in job .description .lower()] 
+        if filtered_ jobs: 
+            for idx , job in enumerate(filtered_ jobs, start=1): 
+                print(f"{idx}. {job .title} at {job. company} in {job. location}") 
+                print(job .description) 
+                print() 
+        else: 
+            print  ("No jobs found matching the keyword.") 
+ 
+def main (): 
+    job_ portal = JobPortal () 
+ 
+    while True: 
+        print ("\n Welcome to the Online Job Portal") 
+        print ("1. Register") 
+        print ("2. Add Job") 
+        print ("3. Display Jobs") 
+        print ("4. Search Jobs") 
+        print ("5. Exit") 
+ 
+        choice = input ("Enter your choice: ") 
+ 
+        if choice == '1': 
+            username = input ("Enter username: ") 
+            email = input ("Enter email: ") 
+            password = input ("Enter password: ") 
+            job _ portal register _ user(username, email, password) 
+            elif choice == '2': 
+            if job_ portal.users 
+                title = input ("Enter job title: ") 
+                company = input ("Enter company name: ") 
+                location = input ("Enter job location: ") 
+                description = input ("Enter job description: ") 
+                job_ portal. add_ job (title, company, location, description) 
+            else: 
+print ("Please register first.") 
+elif choice == '3': 
+job _ portal .display _jobs() 
+elif choice == '4': 
+keyword = input ("Enter keyword to search: ") 
+job_ portal. search _jobs(keyword) 
+elif choice == '5': 
+print ("Thank you for using the Online Job Portal. Goodbye!") 
+break 
+else: 
+print ("Invalid choice. Please enter a number between 1 and 5.") 
