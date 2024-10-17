@@ -1,0 +1,81 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h> 
+#include <ctype.h> 
+ 
+#define MAX_WORD_LENGTH 100 
+ 
+typedef struct Node { 
+    char word[MAX_WORD_LENGTH]; 
+    int count; 
+    struct Node* next; 
+} Node; 
+ 
+Node* create_node(const char* word) { 
+    Node* new_node = malloc(sizeof(Node)); 
+    strcpy(new_node->word, word); 
+    new_node->count = 1; 
+    new_node->next = NULL; 
+    return new_node; 
+} 
+ 
+void insert(Node** head, const char* word) { 
+    while (*head != NULL && strcmp((*head)->word, word) != 0) { 
+        head = &(*head)->next; 
+    } 
+    if (*head != NULL) {                   
+        (*head)->count++; 
+    } else {                                                 
+      *head = create_node(word); 
+    } 
+} 
+ 
+void print_word_frequencies(Node* head) { 
+    while (head != NULL) { 
+        printf("%s: %d\n", head->word, head->count); 
+        head = head->next; 
+    } 
+} 
+ 
+void free_list(Node* head) { 
+    while (head != NULL) { 
+        Node* temp = head; 
+        head = head->next; 
+        free(temp); 
+    } 
+} 
+ 
+int main() { 
+    char text[1000]; 
+    printf("Enter the text: "); 
+    fgets(text, sizeof(text), stdin); 
+ 
+    Node* head = NULL; 
+    char* token = strtok(text, " \t\n.,!?;:\"()[]{}"); 
+    while (token != NULL) { 
+        for (char* p = token; *p; ++p) *p = tolower(*p); 
+        insert(&head, token); 
+        token = strtok(NULL, " \t\n.,!?;:\"()[]{}"); 
+    }                                                                                 
+ 
+    print_word_frequencies(head); 
+    free_list(head); 
+    
+    return (0) 
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                                              14
